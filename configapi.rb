@@ -30,7 +30,7 @@ module ConfigAPI
         end
 
         def value? path
-            return pull path == ""
+            return pull path != ""
         end
 
         def int? path 
