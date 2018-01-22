@@ -29,6 +29,38 @@ module ConfigAPI
             return value
         end
 
+        def value? path
+            return pull path == ""
+        end
+
+        def int? path 
+            begin
+                (pull path).to_i
+            rescue
+                return false
+            end
+
+            return true
+        end
+
+        def float? path 
+            begin
+                (pull path).to_f
+            rescue 
+                return false
+            end
+
+            return true
+        end
+
+        def path? potential_path
+            file = File.new fpath, 'r'
+
+            data = file.read.split '\n'
+
+            return data.include? potential_path
+        end
+
         def update path, value
             newlines = []
 
